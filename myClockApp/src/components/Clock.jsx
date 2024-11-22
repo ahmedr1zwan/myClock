@@ -23,12 +23,18 @@ function Clock(){
         let hours = time.getHours()
         const minutes = time.getMinutes()
         const seconds = time.getSeconds()
+        const ampm = hours >= 12 ? 'PM' : 'AM'
 
         hours = hours % 12 || 12
 
-        return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`
+        return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)} ${ampm}`;
 
 
+    }
+
+    function formatDate() {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return time.toLocaleDateString(undefined, options);
     }
 
     function padZero(num) {
@@ -43,6 +49,7 @@ return(
 
     <div className='clock-container'>
         <span className='clock'>{formatTime()}</span>
+        <span className='date'>{formatDate()}</span>
     </div>
 
 )
